@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Eventz — Your Event, Elevated</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C8A455;
+    --gold-light: #E8D5A3;
+    --dark: #0D0D0D;
+    --dark-card: #161616;
+    --dark-elevated: #1E1E1E;
+    --cream: #F5F0E8;
+    --text-muted: #8A8A8A;
+    --text-light: #CCCCCC;
+    --accent-rose: #B8606A;
+    --accent-sage: #6A8B6E;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4%;
+    backdrop-filter: blur(20px);
+    background: rgba(13,13,13,0.7);
+    border-bottom: 1px solid rgba(200,164,85,0.08);
+    transition: all .3s;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700; letter-spacing: 1px;
+    color: var(--cream);
+  }
+  .logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-muted);
+    font-size: .9rem; font-weight: 500; letter-spacing: .5px;
+    text-transform: uppercase; transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    padding: .7rem 1.8rem;
+    background: transparent; border: 1px solid var(--gold);
+    color: var(--gold); border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-size: .85rem;
+    font-weight: 600; cursor: pointer; text-transform: uppercase;
+    letter-spacing: 1px; transition: all .3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--dark); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { width: 24px; height: 2px; background: var(--cream); transition: .3s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative;
+    padding: 8rem 2rem 4rem;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(200,164,85,.08) 0%, transparent 70%),
+      radial-gradient(circle at 20% 80%, rgba(184,96,106,.05) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(106,139,110,.05) 0%, transparent 40%);
+  }
+  .hero-decoration {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    border: 1px solid rgba(200,164,85,.06);
+    animation: pulse-ring 6s ease-in-out infinite;
+  }
+  .hero-decoration::after {
+    content: ''; position: absolute; top: 50px; left: 50px; right: 50px; bottom: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,164,85,.04);
+  }
+  @keyframes pulse-ring {
+    0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%,-50%) scale(1.05); opacity: .5; }
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 800px; }
+  .hero-tag {
+    display: inline-block; padding: .5rem 1.5rem;
+    border: 1px solid rgba(200,164,85,.3); border-radius: 50px;
+    font-size: .75rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 3px; color: var(--gold); margin-bottom: 2rem;
+    animation: fadeUp .8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem); line-height: 1.05;
+    font-weight: 700; margin-bottom: 1.5rem;
+    animation: fadeUp .8s ease .15s both;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero p {
+    font-size: 1.15rem; color: var(--text-muted);
+    max-width: 550px; margin: 0 auto 2.5rem; line-height: 1.7;
+    font-weight: 300;
+    animation: fadeUp .8s ease .3s both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp .8s ease .45s both;
+  }
+  .btn-primary {
+    padding: 1rem 2.5rem; background: var(--gold); color: var(--dark);
+    border: none; border-radius: 50px; font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; font-weight: 700; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    transition: all .3s; text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,164,85,.2); }
+  .btn-secondary {
+    padding: 1rem 2.5rem; background: transparent;
+    border: 1px solid rgba(245,240,232,.2); color: var(--cream);
+    border-radius: 50px; font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; font-weight: 600; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    transition: all .3s; text-decoration: none;
+  }
+  .btn-secondary:hover { border-color: var(--cream); background: rgba(245,240,232,.05); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 7rem 4%; }
+  .section-tag {
+    display: inline-block; font-size: .7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 4px; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1rem;
+  }
+  .section-sub {
+    color: var(--text-muted); font-size: 1.05rem; max-width: 550px;
+    line-height: 1.7; font-weight: 300;
+  }
+
+  /* ── ABOUT ── */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .about-visual {
+    position: relative; height: 500px; border-radius: var(--radius);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-elevated) 100%);
+    border: 1px solid rgba(200,164,85,.1);
+  }
+  .about-visual-inner {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem;
+  }
+  .about-icon { font-size: 4rem; opacity: .8; }
+  .about-stat { display: flex; gap: 3rem; margin-top: 2rem; }
+  .about-stat div { text-align: center; }
+  .about-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; color: var(--gold); display: block;
+  }
+  .about-stat .label { font-size: .75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-top: .3rem; display: block; }
+
+  /* ── PACKAGES ── */
+  #packages { text-align: center; }
+  .packages-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; max-width: 1300px; margin: 3rem auto 0;
+  }
+  .package-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(245,240,232,.06);
+    border-radius: var(--radius); padding: 3rem 2rem;
+    text-align: left; position: relative;
+    transition: all .4s; overflow: hidden;
+  }
+  .package-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--gold); opacity: 0;
+    transition: opacity .3s;
+  }
+  .package-card:hover { transform: translateY(-6px); border-color: rgba(200,164,85,.15); }
+  .package-card:hover::before { opacity: 1; }
+  .package-card.featured {
+    border-color: rgba(200,164,85,.3);
+    background: linear-gradient(180deg, rgba(200,164,85,.04) 0%, var(--dark-card) 40%);
+  }
+  .package-card.featured::before { opacity: 1; }
+  .featured-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: var(--gold); color: var(--dark);
+    font-size: .65rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2px; padding: .35rem .9rem; border-radius: 50px;
+  }
+  .package-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.5rem;
+  }
+  .pkg-intimate .package-icon { background: rgba(160,140,200,.15); }
+  .pkg-basic .package-icon { background: rgba(106,139,110,.15); }
+  .pkg-elegant .package-icon { background: rgba(200,164,85,.15); }
+  .pkg-extravagant .package-icon { background: rgba(184,96,106,.15); }
+
+  .package-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; margin-bottom: .5rem;
+  }
+  .package-desc {
+    color: var(--text-muted); font-size: .9rem; margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  .package-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; color: var(--cream); margin-bottom: .2rem;
+  }
+  .package-price span { font-size: 1rem; color: var(--text-muted); font-family: 'DM Sans', sans-serif; }
+  .package-note { font-size: .8rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .package-features { list-style: none; margin-bottom: 2rem; }
+  .package-features li {
+    padding: .6rem 0; font-size: .9rem; color: var(--text-light);
+    border-bottom: 1px solid rgba(245,240,232,.04);
+    display: flex; align-items: center; gap: .7rem;
+  }
+  .package-features li::before {
+    content: '✓'; color: var(--gold); font-weight: 700; font-size: .8rem;
+  }
+  .package-btn {
+    width: 100%; padding: .9rem; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-size: .85rem;
+    font-weight: 600; cursor: pointer; text-transform: uppercase;
+    letter-spacing: 1px; transition: all .3s; border: none;
+  }
+  .pkg-intimate .package-btn,
+  .pkg-basic .package-btn,
+  .pkg-extravagant .package-btn {
+    background: transparent; border: 1px solid rgba(200,164,85,.4);
+    color: var(--gold);
+  }
+  .pkg-intimate .package-btn:hover,
+  .pkg-basic .package-btn:hover,
+  .pkg-extravagant .package-btn:hover { background: var(--gold); color: var(--dark); }
+  .pkg-elegant .package-btn {
+    background: var(--gold); color: var(--dark);
+  }
+  .pkg-elegant .package-btn:hover { background: var(--gold-light); }
+
+  /* ── GALLERY ── */
+  .gallery-section { max-width: 1200px; margin: 0 auto; }
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 250px 250px; gap: 1rem; margin-top: 3rem;
+  }
+  .gallery-item {
+    border-radius: var(--radius); overflow: hidden; position: relative;
+    background: var(--dark-card); border: 1px solid rgba(245,240,232,.04);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; transition: all .3s; cursor: pointer;
+  }
+  .gallery-item:hover { transform: scale(1.02); border-color: rgba(200,164,85,.15); }
+  .gallery-item:nth-child(1) { grid-column: span 2; background: linear-gradient(135deg, rgba(200,164,85,.08), rgba(184,96,106,.06)); }
+  .gallery-item:nth-child(2) { background: linear-gradient(135deg, rgba(106,139,110,.1), rgba(200,164,85,.04)); }
+  .gallery-item:nth-child(3) { background: linear-gradient(135deg, rgba(184,96,106,.08), rgba(200,164,85,.04)); }
+  .gallery-item:nth-child(4) { background: linear-gradient(135deg, rgba(200,164,85,.06), rgba(106,139,110,.06)); }
+  .gallery-item:nth-child(5) { grid-column: span 2; background: linear-gradient(135deg, rgba(184,96,106,.06), rgba(200,164,85,.08)); }
+  .gallery-item:nth-child(6) { background: linear-gradient(135deg, rgba(200,164,85,.04), rgba(184,96,106,.08)); }
+  .gallery-label {
+    position: absolute; bottom: 1rem; left: 1rem;
+    font-size: .75rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--text-muted);
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { max-width: 1200px; margin: 0 auto; text-align: center; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+  .testimonial-card {
+    background: var(--dark-card); border: 1px solid rgba(245,240,232,.04);
+    border-radius: var(--radius); padding: 2.5rem 2rem; text-align: left;
+  }
+  .testimonial-stars { color: var(--gold); font-size: .9rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testimonial-text { font-size: .95rem; line-height: 1.7; color: var(--text-light); margin-bottom: 1.5rem; font-weight: 300; }
+  .testimonial-author { font-weight: 600; font-size: .85rem; }
+  .testimonial-role { font-size: .75rem; color: var(--text-muted); margin-top: .2rem; }
+
+  /* ── BOOKING SECTION ── */
+  #booking { max-width: 800px; margin: 0 auto; }
+  .booking-wrapper {
+    background: var(--dark-card);
+    border: 1px solid rgba(200,164,85,.1);
+    border-radius: var(--radius); padding: 3.5rem;
+    margin-top: 3rem; position: relative; overflow: hidden;
+  }
+  .booking-wrapper::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: linear-gradient(90deg, var(--accent-sage), var(--gold), var(--accent-rose));
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .form-group { display: flex; flex-direction: column; gap: .5rem; }
+  .form-group.full { grid-column: span 2; }
+  .form-group label {
+    font-size: .75rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--text-muted);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 1rem 1.2rem;
+    background: var(--dark-elevated); border: 1px solid rgba(245,240,232,.08);
+    border-radius: 8px; color: var(--cream);
+    font-family: 'DM Sans', sans-serif; font-size: .95rem;
+    transition: border-color .3s; outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group select { cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238A8A8A' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 5h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 1rem center;
+  }
+  .form-group select option { background: var(--dark-card); color: var(--cream); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    margin-top: 2rem; width: 100%; padding: 1.1rem;
+    background: var(--gold); color: var(--dark); border: none;
+    border-radius: 50px; font-family: 'DM Sans', sans-serif;
+    font-size: .95rem; font-weight: 700; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 2px;
+    transition: all .3s;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,164,85,.2); }
+
+  /* Success message */
+  .booking-success {
+    display: none; text-align: center; padding: 3rem 1rem;
+  }
+  .booking-success.show { display: block; }
+  .booking-success .check {
+    width: 80px; height: 80px; margin: 0 auto 1.5rem;
+    border-radius: 50%; background: rgba(106,139,110,.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+  }
+  .booking-success h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: .7rem;
+  }
+  .booking-success p { color: var(--text-muted); line-height: 1.7; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(245,240,232,.06);
+    padding: 4rem 4% 2rem;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+  }
+  .footer-brand .logo { margin-bottom: 1rem; }
+  .footer-brand p { color: var(--text-muted); font-size: .9rem; line-height: 1.7; max-width: 300px; }
+  .footer-col h4 {
+    font-size: .75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 3px; color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .footer-col a {
+    display: block; color: var(--text-muted); text-decoration: none;
+    font-size: .9rem; margin-bottom: .7rem; transition: color .3s;
+  }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom {
+    max-width: 1200px; margin: 3rem auto 0;
+    padding-top: 2rem; border-top: 1px solid rgba(245,240,232,.04);
+    display: flex; justify-content: space-between;
+    font-size: .8rem; color: var(--text-muted);
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,.7); backdrop-filter: blur(8px);
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: var(--dark-card); border: 1px solid rgba(200,164,85,.15);
+    border-radius: var(--radius); padding: 2.5rem;
+    max-width: 500px; width: 90%; position: relative;
+    animation: modalIn .3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(.95) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1.2rem;
+    background: none; border: none; color: var(--text-muted);
+    font-size: 1.5rem; cursor: pointer; transition: color .3s;
+  }
+  .modal-close:hover { color: var(--cream); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .packages-grid { grid-template-columns: 1fr 1fr; max-width: 700px; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(5) { grid-column: span 2; }
+    .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 5%; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(13,13,13,.95); backdrop-filter: blur(20px);
+      padding: 2rem; gap: 1.5rem;
+      border-bottom: 1px solid rgba(200,164,85,.08);
+    }
+    section { padding: 5rem 5%; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: span 1; }
+    .booking-wrapper { padding: 2rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:nth-child(1),
+    .gallery-item:nth-child(5) { grid-column: span 1; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: .5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Simple <span>Eventz</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#booking">Book Now</a></li>
+  </ul>
+  <button class="nav-cta" onclick="scrollToBooking()">Reserve</button>
+  <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-decoration"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Houston's Premier Event Venue</div>
+    <h1>Where Every Moment Becomes <em>Unforgettable</em></h1>
+    <p>Elegant spaces, curated packages, and a dedicated team that brings your vision to life — from intimate gatherings to grand celebrations.</p>
+    <div class="hero-btns">
+      <a href="#packages" class="btn-primary">View Packages</a>
+      <a href="#booking" class="btn-secondary">Book a Tour</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about">
+    <div>
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-title">Crafting Celebrations Since 2018</h2>
+      <p class="section-sub" style="margin-bottom: 1.5rem;">
+        At Simple Eventz, we believe every event deserves to feel extraordinary without the complexity. Our venue blends modern elegance with warm hospitality, giving you a space that adapts to your unique vision.
+      </p>
+      <p class="section-sub">
+        Whether it's a wedding reception, corporate gala, birthday milestone, or baby shower — our team handles the details so you can be fully present for the moments that matter.
+      </p>
+    </div>
+    <div class="about-visual">
+      <div class="about-visual-inner">
+        <div class="about-icon">✦</div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; opacity: .6;">Est. 2018</div>
+        <div class="about-stat">
+          <div><span class="num">500+</span><span class="label">Events</span></div>
+          <div><span class="num">12k</span><span class="label">Guests</span></div>
+          <div><span class="num">4.9</span><span class="label">Rating</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="section-tag">Our Packages</div>
+  <h2 class="section-title">Choose Your Experience</h2>
+  <p class="section-sub" style="margin: 0 auto;">Four packages designed to match every occasion and budget.</p>
+
+  <div class="packages-grid">
+    <!-- Intimate Gathering -->
+    <div class="package-card pkg-intimate">
+      <div class="package-icon">○</div>
+      <div class="package-name">Intimate Gathering</div>
+      <div class="package-desc">Perfect for small, personal celebrations — showers, meetups, and cozy get-togethers.</div>
+      <div class="package-price">$375<span>–$550</span></div>
+      <div class="package-note">3 to 4 hours</div>
+      <ul class="package-features">
+        <li>3 to 4 hours event time</li>
+        <li>Tables &amp; chairs</li>
+        <li>Basic linens</li>
+        <li>Bluetooth speaker</li>
+      </ul>
+      <button class="package-btn" onclick="selectPackage('Intimate Gathering')">Select Package</button>
+    </div>
+
+    <!-- Basic -->
+    <div class="package-card pkg-basic">
+      <div class="package-icon">◇</div>
+      <div class="package-name">Basic</div>
+      <div class="package-desc">Everything you need for a solid event — spacious setup with seating for up to 80.</div>
+      <div class="package-price">$900</div>
+      <div class="package-note">7 hours venue access</div>
+      <ul class="package-features">
+        <li>7 hours venue access</li>
+        <li>11 round tables</li>
+        <li>80 Chiavari chairs</li>
+        <li>Basic linens</li>
+        <li>Kitchenette access</li>
+        <li>Bluetooth speaker</li>
+      </ul>
+      <button class="package-btn" onclick="selectPackage('Basic')">Select Basic</button>
+    </div>
+
+    <!-- Elegant Celebration -->
+    <div class="package-card featured pkg-elegant">
+      <div class="featured-badge">Most Popular</div>
+      <div class="package-icon">◆</div>
+      <div class="package-name">Elegant Celebration</div>
+      <div class="package-desc">Elevated style with upgraded linens, centerpieces, and a polished atmosphere for your special day.</div>
+      <div class="package-price">$1,000</div>
+      <div class="package-note">7 hours setup &amp; event time</div>
+      <ul class="package-features">
+        <li>7 hours setup &amp; event time</li>
+        <li>Tables &amp; chairs</li>
+        <li>Upgraded linens</li>
+        <li>Centerpieces (basic or simple décor)</li>
+        <li>Bluetooth speaker</li>
+        <li>Prep area / small kitchenette access</li>
+      </ul>
+      <button class="package-btn" onclick="selectPackage('Elegant Celebration')">Select Elegant</button>
+    </div>
+
+    <!-- Extravagant -->
+    <div class="package-card pkg-extravagant">
+      <div class="package-icon">❖</div>
+      <div class="package-name">The Extravagant</div>
+      <div class="package-desc">The full showstopper — extravagant décor and premium details for unforgettable celebrations.</div>
+      <div class="package-price">$2,300<span>+</span></div>
+      <div class="package-note">7 hours setup &amp; event time</div>
+      <ul class="package-features">
+        <li>7 hours setup &amp; event time</li>
+        <li>Tables &amp; chairs</li>
+        <li>Upgraded linens</li>
+        <li>Extravagant décor</li>
+        <li>Prep area / small kitchenette access</li>
+      </ul>
+      <button class="package-btn" onclick="selectPackage('Extravagant')">Select Extravagant</button>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery-section">
+  <div style="text-align:center;">
+    <div class="section-tag">Our Spaces</div>
+    <h2 class="section-title">A Glimpse Inside</h2>
+    <p class="section-sub" style="margin: 0 auto;">Every corner designed for elegance, every detail crafted for your celebration.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">🏛️ <span class="gallery-label">Grand Ballroom</span></div>
+    <div class="gallery-item">🌿 <span class="gallery-label">Garden Terrace</span></div>
+    <div class="gallery-item">✨ <span class="gallery-label">Lounge</span></div>
+    <div class="gallery-item">🍷 <span class="gallery-label">Bar Area</span></div>
+    <div class="gallery-item">💐 <span class="gallery-label">Ceremony Space</span></div>
+    <div class="gallery-item">🎵 <span class="gallery-label">Dance Floor</span></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="testimonials">
+  <div class="section-tag">Kind Words</div>
+  <h2 class="section-title">What Our Clients Say</h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+      <p class="testimonial-text">"Simple Eventz made our wedding absolutely magical. The team handled every detail with such grace — all we had to do was show up and enjoy the night."</p>
+      <div class="testimonial-author">Jasmine & Marcus T.</div>
+      <div class="testimonial-role">Wedding, Elegant Celebration</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+      <p class="testimonial-text">"We hosted our annual company gala here and the Extravagant package exceeded every expectation. The venue was stunning and the service was impeccable."</p>
+      <div class="testimonial-author">David Chen</div>
+      <div class="testimonial-role">Corporate Gala, Extravagant Package</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+      <p class="testimonial-text">"Best birthday party venue in the city! The Basic package gave us everything we needed for our daughter's sweet 16. Will absolutely be back."</p>
+      <div class="testimonial-author">Monica Rivera</div>
+      <div class="testimonial-role">Birthday, Basic Package</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div style="text-align:center;">
+    <div class="section-tag">Book Your Event</div>
+    <h2 class="section-title">Ready to Celebrate?</h2>
+    <p class="section-sub" style="margin: 0 auto;">Fill out the form below and our team will reach out within 24 hours to confirm your date.</p>
+  </div>
+
+  <div class="booking-wrapper">
+    <form id="bookingForm" class="form-grid" onsubmit="handleBooking(event)"
+          action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
+      <!-- Formsubmit config -->
+      <input type="hidden" name="_subject" value="New Booking Request — Simple Eventz">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" style="display:none">
+      <div class="form-group">
+        <label>First Name *</label>
+        <input type="text" name="firstName" required placeholder="Jane">
+      </div>
+      <div class="form-group">
+        <label>Last Name *</label>
+        <input type="text" name="lastName" required placeholder="Doe">
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" name="email" required placeholder="jane@example.com">
+      </div>
+      <div class="form-group">
+        <label>Phone *</label>
+        <input type="tel" name="phone" required placeholder="(555) 123-4567">
+      </div>
+      <div class="form-group">
+        <label>Event Date *</label>
+        <input type="date" name="eventDate" required>
+      </div>
+      <div class="form-group">
+        <label>Package *</label>
+        <select name="package" id="packageSelect" required>
+          <option value="">Select a package</option>
+          <option value="Intimate Gathering">Intimate Gathering — $375–$550</option>
+          <option value="Basic">Basic — $900</option>
+          <option value="Elegant Celebration">Elegant Celebration — $1,000</option>
+          <option value="Extravagant">The Extravagant — $2,300+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Event Type</label>
+        <select name="eventType">
+          <option value="">Select type</option>
+          <option value="Wedding">Wedding</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Corporate">Corporate Event</option>
+          <option value="Baby Shower">Baby Shower</option>
+          <option value="Anniversary">Anniversary</option>
+          <option value="Graduation">Graduation</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Estimated Guest Count</label>
+        <input type="number" name="guests" placeholder="75" min="1" max="500">
+      </div>
+      <div class="form-group full">
+        <label>Special Requests or Details</label>
+        <textarea name="details" placeholder="Tell us about your vision for the event..."></textarea>
+      </div>
+      <div class="form-group full">
+        <button type="submit" class="form-submit">Submit Booking Request</button>
+      </div>
+    </form>
+
+    <div class="booking-success" id="bookingSuccess">
+      <div class="check">✓</div>
+      <h3>Booking Request Received!</h3>
+      <p style="margin-bottom:1rem;">Thank you for choosing Simple Eventz. Our team will review your request and contact you within 24 hours to confirm your date and discuss the details.</p>
+      <p>A confirmation email has been sent to <strong id="confirmEmail"></strong></p>
+      <button class="btn-primary" style="margin-top: 2rem;" onclick="resetBooking()">Submit Another Request</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">Simple <span>Eventz</span></div>
+      <p>Elegant spaces for life's most important celebrations. Located in the heart of Houston, Texas.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#about">About</a>
+      <a href="#packages">Packages</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#booking">Book Now</a>
+    </div>
+    <div class="footer-col">
+      <h4>Events</h4>
+      <a href="#booking">Weddings</a>
+      <a href="#booking">Corporate</a>
+      <a href="#booking">Birthdays</a>
+      <a href="#booking">Private</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:+15551234567">(555) 123-4567</a>
+      <a href="/cdn-cgi/l/email-protection#563e333a3a3916253f3b263a3333203338222c7835393b"><span class="__cf_email__" data-cfemail="472f222b2b2807342e2a372b2222312229333d6924282a">[email&#160;protected]</span></a>
+      <a>Houston, TX</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Simple Eventz. All rights reserved.</span>
+    <span>Designed with ✦</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Mobile nav toggle
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Smooth scroll to booking
+  function scrollToBooking() {
+    document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Select package from cards
+  function selectPackage(pkg) {
+    document.getElementById('packageSelect').value = pkg;
+    scrollToBooking();
+  }
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Handle booking form submission via Formsubmit
+  function handleBooking(e) {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const submitBtn = form.querySelector('.form-submit');
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+    })
+    .then(response => {
+      document.getElementById('confirmEmail').textContent = email;
+      form.style.display = 'none';
+      document.getElementById('bookingSuccess').classList.add('show');
+    })
+    .catch(error => {
+      alert('Something went wrong. Please try again or email us directly at hello@simpleeventz.com');
+      submitBtn.textContent = 'Submit Booking Request';
+      submitBtn.disabled = false;
+    });
+  }
+
+  // Reset booking form
+  function resetBooking() {
+    const form = document.getElementById('bookingForm');
+    form.reset();
+    form.style.display = 'grid';
+    document.getElementById('bookingSuccess').classList.remove('show');
+  }
+
+  // Set min date to today
+  const dateInput = document.querySelector('input[type="date"]');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+  }
+
+  // Nav ba
