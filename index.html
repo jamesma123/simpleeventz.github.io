@@ -641,80 +641,20 @@
   <div style="text-align:center;">
     <div class="section-tag">Book Your Event</div>
     <h2 class="section-title">Ready to Celebrate?</h2>
-    <p class="section-sub" style="margin: 0 auto;">Fill out the form below and our team will reach out within 24 hours to confirm your date.</p>
+    <p class="section-sub" style="margin: 0 auto;">Reach out to us directly and our team will help you plan the perfect event.</p>
   </div>
 
-  <div class="booking-wrapper">
-    <form id="bookingForm" class="form-grid" onsubmit="handleBooking(event)"
-          action="https://formsubmit.co/YOUR_EMAIL@example.com" method="POST">
-      <!-- Formsubmit config -->
-      <input type="hidden" name="_subject" value="New Booking Request — Simple Eventz">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="text" name="_honey" style="display:none">
-      <div class="form-group">
-        <label>First Name *</label>
-        <input type="text" name="firstName" required placeholder="Jane">
-      </div>
-      <div class="form-group">
-        <label>Last Name *</label>
-        <input type="text" name="lastName" required placeholder="Doe">
-      </div>
-      <div class="form-group">
-        <label>Email *</label>
-        <input type="email" name="email" required placeholder="jane@example.com">
-      </div>
-      <div class="form-group">
-        <label>Phone *</label>
-        <input type="tel" name="phone" required placeholder="(555) 123-4567">
-      </div>
-      <div class="form-group">
-        <label>Event Date *</label>
-        <input type="date" name="eventDate" required>
-      </div>
-      <div class="form-group">
-        <label>Package *</label>
-        <select name="package" id="packageSelect" required>
-          <option value="">Select a package</option>
-          <option value="Intimate Gathering">Intimate Gathering — $375–$550</option>
-          <option value="Basic">Basic — $900</option>
-          <option value="Elegant Celebration">Elegant Celebration — $1,000</option>
-          <option value="Extravagant">The Extravagant — $2,300+</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Event Type</label>
-        <select name="eventType">
-          <option value="">Select type</option>
-          <option value="Wedding">Wedding</option>
-          <option value="Birthday">Birthday</option>
-          <option value="Corporate">Corporate Event</option>
-          <option value="Baby Shower">Baby Shower</option>
-          <option value="Anniversary">Anniversary</option>
-          <option value="Graduation">Graduation</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Estimated Guest Count</label>
-        <input type="number" name="guests" placeholder="75" min="1" max="500">
-      </div>
-      <div class="form-group full">
-        <label>Special Requests or Details</label>
-        <textarea name="details" placeholder="Tell us about your vision for the event..."></textarea>
-      </div>
-      <div class="form-group full">
-        <button type="submit" class="form-submit">Submit Booking Request</button>
-      </div>
-    </form>
-
-    <div class="booking-success" id="bookingSuccess">
-      <div class="check">✓</div>
-      <h3>Booking Request Received!</h3>
-      <p style="margin-bottom:1rem;">Thank you for choosing Simple Eventz. Our team will review your request and contact you within 24 hours to confirm your date and discuss the details.</p>
-      <p>A confirmation email has been sent to <strong id="confirmEmail"></strong></p>
-      <button class="btn-primary" style="margin-top: 2rem;" onclick="resetBooking()">Submit Another Request</button>
+  <div class="booking-wrapper" style="text-align: center; padding: 4rem 3rem;">
+    <div style="margin-bottom: 2.5rem;">
+      <div style="font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; color: var(--gold); margin-bottom: .8rem;">Call or Text</div>
+      <a href="tel:+18328880525" style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--cream); text-decoration: none; transition: color .3s; display: block;">(832) 888-0525</a>
     </div>
+    <div style="width: 80px; height: 1px; background: rgba(200,164,85,.2); margin: 0 auto 2.5rem;"></div>
+    <div>
+      <div style="font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; color: var(--gold); margin-bottom: .8rem;">Email Us</div>
+      <a href="mailto:simpleeventz25@gmail.com" style="font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 3vw, 1.8rem); color: var(--cream); text-decoration: none; transition: color .3s; display: block;">simpleeventz25@gmail.com</a>
+    </div>
+    <p style="color: var(--text-muted); margin-top: 2.5rem; font-size: .95rem; line-height: 1.7;">We typically respond within 24 hours.<br>We look forward to making your event unforgettable!</p>
   </div>
 </section>
 
@@ -741,8 +681,8 @@
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <a href="tel:+15551234567">(555) 123-4567</a>
-      <a href="mailto:hello@simpleeventz.com">hello@simpleeventz.com</a>
+      <a href="tel:+18328880525">(832) 885-0525</a>
+      <a href="mailto:simpleeventz25@gmail.com">simpleeventz25@gmail.com</a>
       <a>Houston, TX</a>
     </div>
   </div>
@@ -765,7 +705,6 @@
 
   // Select package from cards
   function selectPackage(pkg) {
-    document.getElementById('packageSelect').value = pkg;
     scrollToBooking();
   }
 
@@ -776,42 +715,4 @@
     });
   });
 
-  // Handle booking form submission via Formsubmit
-  function handleBooking(e) {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const submitBtn = form.querySelector('.form-submit');
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-    })
-    .then(response => {
-      document.getElementById('confirmEmail').textContent = email;
-      form.style.display = 'none';
-      document.getElementById('bookingSuccess').classList.add('show');
-    })
-    .catch(error => {
-      alert('Something went wrong. Please try again or email us directly at hello@simpleeventz.com');
-      submitBtn.textContent = 'Submit Booking Request';
-      submitBtn.disabled = false;
-    });
-  }
-
-  // Reset booking form
-  function resetBooking() {
-    const form = document.getElementById('bookingForm');
-    form.reset();
-    form.style.display = 'grid';
-    document.getElementById('bookingSuccess').classList.remove('show');
-  }
-
-  // Set min date to today
-  const dateInput = document.querySelector('input[type="date"]');
-  if (dateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.min = today;
-  }
+  // Nav ba
