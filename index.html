@@ -273,26 +273,23 @@
   .gallery-section { max-width: 1200px; margin: 0 auto; }
   .gallery-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 280px 280px; gap: 1rem; margin-top: 3rem;
+    gap: 1rem; margin-top: 3rem;
   }
   .gallery-item {
     border-radius: var(--radius); overflow: hidden; position: relative;
     background: var(--dark-card); border: 1px solid rgba(245,240,232,.06);
-    transition: all .3s; cursor: pointer;
+    height: 280px; transition: all .3s; cursor: pointer;
   }
   .gallery-item:hover { transform: scale(1.02); border-color: rgba(200,164,85,.2); }
   .gallery-item img {
     width: 100%; height: 100%; object-fit: cover;
     display: block;
   }
-  .gallery-placeholder {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: .5rem;
-    color: var(--text-muted); font-size: .8rem;
-    text-transform: uppercase; letter-spacing: 2px;
+  .gallery-bottom-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1rem; margin-top: 1rem; max-width: 75%; margin-left: auto; margin-right: auto;
   }
-  .gallery-placeholder span { font-size: 1.5rem; opacity: .3; }
+  .gallery-bottom-row .gallery-item { height: 280px; }
 
   /* ── TESTIMONIALS ── */
   .testimonials { max-width: 1200px; margin: 0 auto; text-align: center; }
@@ -426,7 +423,8 @@
   @media (max-width: 1024px) {
     .packages-grid { grid-template-columns: 1fr 1fr; max-width: 700px; }
     .about { grid-template-columns: 1fr; gap: 3rem; }
-    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-bottom-row { max-width: 100%; grid-template-columns: 1fr 1fr 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
   }
@@ -446,6 +444,8 @@
     .form-group.full { grid-column: span 1; }
     .booking-wrapper { padding: 2rem; }
     .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-bottom-row { max-width: 100%; grid-template-columns: 1fr 1fr; }
+    .gallery-item { height: 200px; }
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: .5rem; }
   }
@@ -597,14 +597,15 @@
     <p class="section-sub" style="margin: 0 auto;">Every corner designed for elegance, every detail crafted for your celebration.</p>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 1</div><!-- <img src="images/photo1.jpg" alt="Event photo 1"> --></div>
-    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 2</div><!-- <img src="images/photo2.jpg" alt="Event photo 2"> --></div>
-    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 3</div><!-- <img src="images/photo3.jpg" alt="Event photo 3"> --></div>
-    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 4</div><!-- <img src="images/photo4.jpg" alt="Event photo 4"> --></div>
-    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 5</div><!-- <img src="images/photo5.jpg" alt="Event photo 5"> --></div>
-    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 6</div><!-- <img src="images/photo6.jpg" alt="Event photo 6"> --></div>
-    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 7</div><!-- <img src="images/photo7.jpg" alt="Event photo 7"> --></div>
-    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 8</div><!-- <img src="images/photo8.jpg" alt="Event photo 8"> --></div>
+    <div class="gallery-item"><img src="images/IMG_0113.jpg" alt="Simple Eventz venue"></div>
+    <div class="gallery-item"><img src="images/IMG_4540.jpg" alt="Simple Eventz event setup"></div>
+    <div class="gallery-item"><img src="images/IMG_4541.jpg" alt="Simple Eventz décor"></div>
+    <div class="gallery-item"><img src="images/IMG_4638.jpg" alt="Simple Eventz celebration"></div>
+  </div>
+  <div class="gallery-bottom-row">
+    <div class="gallery-item"><img src="images/IMG_4640.jpg" alt="Simple Eventz event"></div>
+    <div class="gallery-item"><img src="images/IMG_4670.jpg" alt="Simple Eventz venue space"></div>
+    <div class="gallery-item"><img src="images/IMG_4796.jpg" alt="Simple Eventz event space"></div>
   </div>
 </section>
 
