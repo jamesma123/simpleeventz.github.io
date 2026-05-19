@@ -273,26 +273,26 @@
   .gallery-section { max-width: 1200px; margin: 0 auto; }
   .gallery-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 250px 250px; gap: 1rem; margin-top: 3rem;
+    grid-template-rows: 280px 280px; gap: 1rem; margin-top: 3rem;
   }
   .gallery-item {
     border-radius: var(--radius); overflow: hidden; position: relative;
-    background: var(--dark-card); border: 1px solid rgba(245,240,232,.04);
+    background: var(--dark-card); border: 1px solid rgba(245,240,232,.06);
+    transition: all .3s; cursor: pointer;
+  }
+  .gallery-item:hover { transform: scale(1.02); border-color: rgba(200,164,85,.2); }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  .gallery-placeholder {
+    width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; transition: all .3s; cursor: pointer;
+    flex-direction: column; gap: .5rem;
+    color: var(--text-muted); font-size: .8rem;
+    text-transform: uppercase; letter-spacing: 2px;
   }
-  .gallery-item:hover { transform: scale(1.02); border-color: rgba(200,164,85,.15); }
-  .gallery-item:nth-child(1) { grid-column: span 2; background: linear-gradient(135deg, rgba(200,164,85,.08), rgba(184,96,106,.06)); }
-  .gallery-item:nth-child(2) { background: linear-gradient(135deg, rgba(106,139,110,.1), rgba(200,164,85,.04)); }
-  .gallery-item:nth-child(3) { background: linear-gradient(135deg, rgba(184,96,106,.08), rgba(200,164,85,.04)); }
-  .gallery-item:nth-child(4) { background: linear-gradient(135deg, rgba(200,164,85,.06), rgba(106,139,110,.06)); }
-  .gallery-item:nth-child(5) { grid-column: span 2; background: linear-gradient(135deg, rgba(184,96,106,.06), rgba(200,164,85,.08)); }
-  .gallery-item:nth-child(6) { background: linear-gradient(135deg, rgba(200,164,85,.04), rgba(184,96,106,.08)); }
-  .gallery-label {
-    position: absolute; bottom: 1rem; left: 1rem;
-    font-size: .75rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 2px; color: var(--text-muted);
-  }
+  .gallery-placeholder span { font-size: 1.5rem; opacity: .3; }
 
   /* ── TESTIMONIALS ── */
   .testimonials { max-width: 1200px; margin: 0 auto; text-align: center; }
@@ -427,8 +427,6 @@
     .packages-grid { grid-template-columns: 1fr 1fr; max-width: 700px; }
     .about { grid-template-columns: 1fr; gap: 3rem; }
     .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .gallery-item:nth-child(1) { grid-column: span 2; }
-    .gallery-item:nth-child(5) { grid-column: span 2; }
     .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
   }
@@ -447,9 +445,7 @@
     .form-grid { grid-template-columns: 1fr; }
     .form-group.full { grid-column: span 1; }
     .booking-wrapper { padding: 2rem; }
-    .gallery-grid { grid-template-columns: 1fr; }
-    .gallery-item:nth-child(1),
-    .gallery-item:nth-child(5) { grid-column: span 1; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
     .footer-inner { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: .5rem; }
   }
@@ -601,12 +597,14 @@
     <p class="section-sub" style="margin: 0 auto;">Every corner designed for elegance, every detail crafted for your celebration.</p>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item">🏛️ <span class="gallery-label">Grand Ballroom</span></div>
-    <div class="gallery-item">🌿 <span class="gallery-label">Garden Terrace</span></div>
-    <div class="gallery-item">✨ <span class="gallery-label">Lounge</span></div>
-    <div class="gallery-item">🍷 <span class="gallery-label">Bar Area</span></div>
-    <div class="gallery-item">💐 <span class="gallery-label">Ceremony Space</span></div>
-    <div class="gallery-item">🎵 <span class="gallery-label">Dance Floor</span></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 1</div><!-- <img src="images/photo1.jpg" alt="Event photo 1"> --></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 2</div><!-- <img src="images/photo2.jpg" alt="Event photo 2"> --></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 3</div><!-- <img src="images/photo3.jpg" alt="Event photo 3"> --></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 4</div><!-- <img src="images/photo4.jpg" alt="Event photo 4"> --></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 5</div><!-- <img src="images/photo5.jpg" alt="Event photo 5"> --></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 6</div><!-- <img src="images/photo6.jpg" alt="Event photo 6"> --></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 7</div><!-- <img src="images/photo7.jpg" alt="Event photo 7"> --></div>
+    <div class="gallery-item"><div class="gallery-placeholder"><span>✦</span>Image 8</div><!-- <img src="images/photo8.jpg" alt="Event photo 8"> --></div>
   </div>
 </section>
 
@@ -743,7 +741,7 @@
     <div class="footer-col">
       <h4>Contact</h4>
       <a href="tel:+15551234567">(555) 123-4567</a>
-      <a href="/cdn-cgi/l/email-protection#563e333a3a3916253f3b263a3333203338222c7835393b"><span class="__cf_email__" data-cfemail="472f222b2b2807342e2a372b2222312229333d6924282a">[email&#160;protected]</span></a>
+      <a href="mailto:hello@simpleeventz.com">hello@simpleeventz.com</a>
       <a>Houston, TX</a>
     </div>
   </div>
@@ -753,7 +751,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Mobile nav toggle
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
@@ -816,5 +814,3 @@
     const today = new Date().toISOString().split('T')[0];
     dateInput.min = today;
   }
-
-  // Nav ba
