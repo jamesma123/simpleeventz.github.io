@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,18 +19,14 @@
     --accent-sage: #6A8B6E;
     --radius: 12px;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--dark);
     color: var(--cream);
     overflow-x: hidden;
   }
-
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -63,10 +59,8 @@
     letter-spacing: 1px; transition: all .3s;
   }
   .nav-cta:hover { background: var(--gold); color: var(--dark); }
-
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
   .hamburger span { width: 24px; height: 2px; background: var(--cream); transition: .3s; }
-
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -141,12 +135,10 @@
     transition: all .3s; text-decoration: none;
   }
   .btn-secondary:hover { border-color: var(--cream); background: rgba(245,240,232,.05); }
-
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   /* ── SECTION COMMON ── */
   section { padding: 7rem 4%; }
   .section-tag {
@@ -162,7 +154,6 @@
     color: var(--text-muted); font-size: 1.05rem; max-width: 550px;
     line-height: 1.7; font-weight: 300;
   }
-
   /* ── ABOUT ── */
   .about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1200px; margin: 0 auto; }
   .about-visual {
@@ -184,12 +175,11 @@
     font-size: 2.5rem; color: var(--gold); display: block;
   }
   .about-stat .label { font-size: .75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-top: .3rem; display: block; }
-
   /* ── PACKAGES ── */
   #packages { text-align: center; }
   .packages-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem; max-width: 1300px; margin: 3rem auto 0;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; max-width: 1000px; margin: 3rem auto 0;
   }
   .package-card {
     background: var(--dark-card);
@@ -225,7 +215,6 @@
   .pkg-basic .package-icon { background: rgba(106,139,110,.15); }
   .pkg-elegant .package-icon { background: rgba(200,164,85,.15); }
   .pkg-extravagant .package-icon { background: rgba(184,96,106,.15); }
-
   .package-name {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem; margin-bottom: .5rem;
@@ -268,7 +257,6 @@
     background: var(--gold); color: var(--dark);
   }
   .pkg-elegant .package-btn:hover { background: var(--gold-light); }
-
   /* ── GALLERY ── */
   .gallery-section { max-width: 1200px; margin: 0 auto; }
   .gallery-grid {
@@ -290,7 +278,6 @@
     gap: 1rem; margin-top: 1rem; max-width: 75%; margin-left: auto; margin-right: auto;
   }
   .gallery-bottom-row .gallery-item { height: 280px; }
-
   /* ── TESTIMONIALS ── */
   .testimonials { max-width: 1200px; margin: 0 auto; text-align: center; }
   .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
@@ -302,7 +289,6 @@
   .testimonial-text { font-size: .95rem; line-height: 1.7; color: var(--text-light); margin-bottom: 1.5rem; font-weight: 300; }
   .testimonial-author { font-weight: 600; font-size: .85rem; }
   .testimonial-role { font-size: .75rem; color: var(--text-muted); margin-top: .2rem; }
-
   /* ── BOOKING SECTION ── */
   #booking { max-width: 800px; margin: 0 auto; }
   .booking-wrapper {
@@ -351,7 +337,6 @@
     transition: all .3s;
   }
   .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,164,85,.2); }
-
   /* Success message */
   .booking-success {
     display: none; text-align: center; padding: 3rem 1rem;
@@ -367,7 +352,6 @@
     font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: .7rem;
   }
   .booking-success p { color: var(--text-muted); line-height: 1.7; }
-
   /* ── FOOTER ── */
   footer {
     border-top: 1px solid rgba(245,240,232,.06);
@@ -394,7 +378,6 @@
     display: flex; justify-content: space-between;
     font-size: .8rem; color: var(--text-muted);
   }
-
   /* ── MODAL ── */
   .modal-overlay {
     display: none; position: fixed; inset: 0; z-index: 200;
@@ -418,10 +401,9 @@
     font-size: 1.5rem; cursor: pointer; transition: color .3s;
   }
   .modal-close:hover { color: var(--cream); }
-
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
-    .packages-grid { grid-template-columns: 1fr 1fr; max-width: 700px; }
+    .packages-grid { grid-template-columns: 1fr; max-width: 480px; }
     .about { grid-template-columns: 1fr; gap: 3rem; }
     .gallery-grid { grid-template-columns: 1fr 1fr; }
     .gallery-bottom-row { max-width: 100%; grid-template-columns: 1fr 1fr 1fr; }
@@ -452,7 +434,6 @@
 </style>
 </head>
 <body>
-
 <!-- NAV -->
 <nav>
   <div class="logo">Simple <span>Eventz</span></div>
@@ -460,15 +441,11 @@
     <li><a href="#about">About</a></li>
     <li><a href="#packages">Packages</a></li>
     <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#booking">Book Now</a></li>
   </ul>
-  <button class="nav-cta" onclick="scrollToBooking()">Reserve</button>
   <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-decoration"></div>
@@ -478,17 +455,14 @@
     <p>Elegant spaces, curated packages, and a dedicated team that brings your vision to life — from intimate gatherings to grand celebrations.</p>
     <div class="hero-btns">
       <a href="#packages" class="btn-primary">View Packages</a>
-      <a href="#booking" class="btn-secondary">Book a Tour</a>
     </div>
   </div>
 </section>
-
 <!-- ABOUT -->
 <section id="about">
   <div class="about">
     <div>
       <div class="section-tag">Our Story</div>
-      <h2 class="section-title">Crafting Celebrations Since 2018</h2>
       <p class="section-sub" style="margin-bottom: 1.5rem;">
         At Simple Eventz, we believe every event deserves to feel extraordinary without the complexity. Our venue blends modern elegance with warm hospitality, giving you a space that adapts to your unique vision.
       </p>
@@ -499,7 +473,7 @@
     <div class="about-visual">
       <div class="about-visual-inner">
         <div class="about-icon">✦</div>
-        <div style="font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; opacity: .6;">Est. 2018</div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; opacity: .6;">Est. 2025</div>
         <div class="about-stat">
           <div><span class="num">500+</span><span class="label">Events</span></div>
           <div><span class="num">12k</span><span class="label">Guests</span></div>
@@ -509,86 +483,62 @@
     </div>
   </div>
 </section>
-
 <!-- PACKAGES -->
 <section id="packages">
   <div class="section-tag">Our Packages</div>
-  <h2 class="section-title">Choose Your Experience</h2>
-  <p class="section-sub" style="margin: 0 auto;">Four packages designed to match every occasion and budget.</p>
-
+  <h2 class="section-title">Simple, Transparent Pricing</h2>
+  <p class="section-sub" style="margin: 0 auto;">Book the full venue by the day, or by the hour for shorter gatherings.</p>
   <div class="packages-grid">
-    <!-- Intimate Gathering -->
-    <div class="package-card pkg-intimate">
-      <div class="package-icon">○</div>
-      <div class="package-name">Intimate Gathering</div>
-      <div class="package-desc">Perfect for small, personal celebrations — showers, meetups, and cozy get-togethers.</div>
-      <div class="package-price">$375<span>–$550</span></div>
-      <div class="package-note">3 to 4 hours</div>
-      <ul class="package-features">
-        <li>3 to 4 hours event time</li>
-        <li>Tables &amp; chairs</li>
-        <li>Basic linens</li>
-        <li>Bluetooth speaker</li>
-      </ul>
-      <button class="package-btn" onclick="selectPackage('Intimate Gathering')">Select Package</button>
-    </div>
-
-    <!-- Basic -->
+    <!-- Friday & Sunday -->
     <div class="package-card pkg-basic">
       <div class="package-icon">◇</div>
-      <div class="package-name">Basic</div>
-      <div class="package-desc">Everything you need for a solid event — spacious setup with seating for up to 80.</div>
-      <div class="package-price">$900</div>
+      <div class="package-name">Friday &amp; Sunday</div>
+      <div class="package-desc">The full venue for your weekend celebration at a weekend-value rate.</div>
+      <div class="package-price">$650</div>
       <div class="package-note">7 hours venue access</div>
       <ul class="package-features">
         <li>7 hours venue access</li>
-        <li>11 round tables</li>
-        <li>80 Chiavari chairs</li>
-        <li>Basic linens</li>
-        <li>Kitchenette access</li>
+        <li>Tables &amp; chairs</li>
+        <li>Linens</li>
+        <li>Kitchenette / prep area access</li>
         <li>Bluetooth speaker</li>
       </ul>
-      <button class="package-btn" onclick="selectPackage('Basic')">Select Basic</button>
+      <button class="package-btn" onclick="selectPackage('Friday & Sunday')">Inquire</button>
     </div>
-
-    <!-- Elegant Celebration -->
+    <!-- Saturday -->
     <div class="package-card featured pkg-elegant">
       <div class="featured-badge">Most Popular</div>
       <div class="package-icon">◆</div>
-      <div class="package-name">Elegant Celebration</div>
-      <div class="package-desc">Elevated style with upgraded linens, centerpieces, and a polished atmosphere for your special day.</div>
-      <div class="package-price">$1,000</div>
-      <div class="package-note">7 hours setup &amp; event time</div>
+      <div class="package-name">Saturday</div>
+      <div class="package-desc">Our most-requested day — the complete venue for your big celebration.</div>
+      <div class="package-price">$800</div>
+      <div class="package-note">7 hours venue access</div>
       <ul class="package-features">
-        <li>7 hours setup &amp; event time</li>
+        <li>7 hours venue access</li>
         <li>Tables &amp; chairs</li>
-        <li>Upgraded linens</li>
-        <li>Centerpieces (basic or simple décor)</li>
+        <li>Linens</li>
+        <li>Kitchenette / prep area access</li>
         <li>Bluetooth speaker</li>
-        <li>Prep area / small kitchenette access</li>
       </ul>
-      <button class="package-btn" onclick="selectPackage('Elegant Celebration')">Select Elegant</button>
+      <button class="package-btn" onclick="selectPackage('Saturday')">Inquire</button>
     </div>
-
-    <!-- Extravagant -->
-    <div class="package-card pkg-extravagant">
-      <div class="package-icon">❖</div>
-      <div class="package-name">The Extravagant</div>
-      <div class="package-desc">The full showstopper — extravagant décor and premium details for unforgettable celebrations.</div>
-      <div class="package-price">$2,300<span>+</span></div>
-      <div class="package-note">7 hours setup &amp; event time</div>
+    <!-- Standard Hourly -->
+    <div class="package-card pkg-intimate">
+      <div class="package-icon">○</div>
+      <div class="package-name">Standard Hourly</div>
+      <div class="package-desc">Flexible booking for shorter events and weekday gatherings.</div>
+      <div class="package-price">$120<span>/hr</span></div>
+      <div class="package-note">Billed per hour</div>
       <ul class="package-features">
-        <li>7 hours setup &amp; event time</li>
         <li>Tables &amp; chairs</li>
-        <li>Upgraded linens</li>
-        <li>Extravagant décor</li>
-        <li>Prep area / small kitchenette access</li>
+        <li>Linens</li>
+        <li>Kitchenette / prep area access</li>
+        <li>Bluetooth speaker</li>
       </ul>
-      <button class="package-btn" onclick="selectPackage('Extravagant')">Select Extravagant</button>
+      <button class="package-btn" onclick="selectPackage('Standard Hourly')">Inquire</button>
     </div>
   </div>
 </section>
-
 <!-- GALLERY -->
 <section id="gallery" class="gallery-section">
   <div style="text-align:center;">
@@ -608,34 +558,6 @@
     <div class="gallery-item"><img src="images/IMG_4796.jpg" alt="Simple Eventz event space"></div>
   </div>
 </section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials" class="testimonials">
-  <div class="section-tag">Kind Words</div>
-  <h2 class="section-title">What Our Clients Say</h2>
-
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★ ★ ★ ★ ★</div>
-      <p class="testimonial-text">"Simple Eventz made our wedding absolutely magical. The team handled every detail with such grace — all we had to do was show up and enjoy the night."</p>
-      <div class="testimonial-author">Jasmine & Marcus T.</div>
-      <div class="testimonial-role">Wedding, Elegant Celebration</div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★ ★ ★ ★ ★</div>
-      <p class="testimonial-text">"We hosted our annual company gala here and the Extravagant package exceeded every expectation. The venue was stunning and the service was impeccable."</p>
-      <div class="testimonial-author">David Chen</div>
-      <div class="testimonial-role">Corporate Gala, Extravagant Package</div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★ ★ ★ ★ ★</div>
-      <p class="testimonial-text">"Best birthday party venue in the city! The Basic package gave us everything we needed for our daughter's sweet 16. Will absolutely be back."</p>
-      <div class="testimonial-author">Monica Rivera</div>
-      <div class="testimonial-role">Birthday, Basic Package</div>
-    </div>
-  </div>
-</section>
-
 <!-- BOOKING -->
 <section id="booking">
   <div style="text-align:center;">
@@ -643,11 +565,10 @@
     <h2 class="section-title">Ready to Celebrate?</h2>
     <p class="section-sub" style="margin: 0 auto;">Reach out to us directly and our team will help you plan the perfect event.</p>
   </div>
-
   <div class="booking-wrapper" style="text-align: center; padding: 4rem 3rem;">
     <div style="margin-bottom: 2.5rem;">
       <div style="font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; color: var(--gold); margin-bottom: .8rem;">Call or Text</div>
-      <a href="tel:+18328880525" style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--cream); text-decoration: none; transition: color .3s; display: block;">(832) 888-0525</a>
+      <a href="tel:+13468631408" style="font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--cream); text-decoration: none; transition: color .3s; display: block;">(346) 863-1408</a>
     </div>
     <div style="width: 80px; height: 1px; background: rgba(200,164,85,.2); margin: 0 auto 2.5rem;"></div>
     <div>
@@ -657,7 +578,6 @@
     <p style="color: var(--text-muted); margin-top: 2.5rem; font-size: .95rem; line-height: 1.7;">We typically respond within 24 hours.<br>We look forward to making your event unforgettable!</p>
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -670,7 +590,6 @@
       <a href="#about">About</a>
       <a href="#packages">Packages</a>
       <a href="#gallery">Gallery</a>
-      <a href="#booking">Book Now</a>
     </div>
     <div class="footer-col">
       <h4>Events</h4>
@@ -681,7 +600,7 @@
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <a href="tel:+18328880525">(346) 863-1408</a>
+      <a href="tel:+13468631408">(346) 863-1408</a>
       <a href="mailto:simpleeventz25@gmail.com">simpleeventz25@gmail.com</a>
       <a>Houston, TX</a>
     </div>
@@ -691,28 +610,25 @@
     <span>Designed with ✦</span>
   </div>
 </footer>
-
 <script>
   // Mobile nav toggle
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
-
   // Smooth scroll to booking
   function scrollToBooking() {
     document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
   }
-
   // Select package from cards
   function selectPackage(pkg) {
     scrollToBooking();
   }
-
   // Close mobile nav on link click
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       document.getElementById('navLinks').classList.remove('open');
     });
   });
-
-  // Nav ba
+</script>
+</body>
+</html>
